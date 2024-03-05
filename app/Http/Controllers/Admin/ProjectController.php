@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 //Models
 use App\Models\Project;
 
+//Form Request
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+
 class ProjectController extends Controller
 {
     /**
@@ -30,15 +34,11 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $validationData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|max:255',
-            'content' => 'required|max:255',
-            
-        ],
-    );
+        
+        $validationData=$request->validated();
+
         $project = Project::create($validationData);
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }
@@ -64,15 +64,9 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $slug)
+    public function update(UpdateProjectRequest $request, string $slug)
     {
-        $validationData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|max:255',
-            'content' => 'required|max:255',
-            
-        ],
-        );
+        $validationData=$request->validated();
         $project = Project::where('slug', $slug)->firstOrFail();
         $project->update($validationData);
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);

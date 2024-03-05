@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('page-title', $project->title.'Edit')
+@section('page-title', $project->title . 'Edit')
 
 @section('main-content')
     <h1 class="text-center">
-       {{ $project->title }}
+        {{ $project->title }}
     </h1>
 
     <div class="row">
@@ -34,25 +34,37 @@
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Titolo <span class="text-danger">*</span></label>
-                        <input 
-                        value="{{ old('title', $project->title) }}"
-                        type="text" class="form-control"         
-                        id="title" name="title"
-                        placeholder="Inserisci il titolo..." maxlength="255">
+                        <input value="{{ old('title', $project->title) }}" type="text"
+                            class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                            placeholder="Inserisci il titolo..." maxlength="255">
+                        @error('title')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="slug" class="form-label">Thumb</label>
-                        <input 
-                        value="{{ old('slug', $project->slug) }}"
-                        type="text" class="form-control" id="slug" name="slug"
-                        placeholder="Inserisci la slug..." maxlength="255">
+                        <input value="{{ old('slug', $project->slug) }}" type="text"
+                            class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
+                            placeholder="Inserisci la slug..." maxlength="255">
+                        @error('slug')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
-                        <textarea class="form-control" id="content" name="content" rows="3"
-                        placeholder="Inserisci il Content...">{{ old('content', $project->content) }}</textarea>
+                        <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3"
+                            placeholder="Inserisci il Content...">{{ old('content', $project->content) }}</textarea>
+                        @error('content')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div>

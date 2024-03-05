@@ -36,21 +36,24 @@
                                         <td>{{ $project->slug }}</td>
                                         <td>{{ $project->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}" class="btn btn-xs btn-primary">
+                                            <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}"
+                                                class="btn btn-xs btn-primary">
                                                 Show
                                             </a>
                                             <a href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}"
                                                 class="btn btn-warning my-2">
                                                 Modifica
                                             </a>
-                                            <form onsubmit="return confirm('Sei sicuro di voler eliminare questo elemento');"
-                                            class="my-2" action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                Elimina
-                                            </button>
+                                            <form
+                                                onsubmit="return confirm('Sei sicuro di voler eliminare questo elemento');"
+                                                class="my-2 d-inline-block"
+                                                action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    Elimina
+                                                </button>
 
                                             </form>
                                         </td>
