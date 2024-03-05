@@ -43,6 +43,16 @@
                                                 class="btn btn-warning my-2">
                                                 Modifica
                                             </a>
+                                            <form onsubmit="return confirm('Sei sicuro di voler eliminare questo elemento');"
+                                            class="my-2" action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                Elimina
+                                            </button>
+
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
