@@ -55,15 +55,16 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(string $slug)
     {
+        $project = Project::where('slug', $slug)->firstOrFail();
         return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, string $slug)
     {
         $validationData = $request->validate([
             'title' => 'required|max:255',
@@ -72,7 +73,7 @@ class ProjectController extends Controller
             
         ],
         );
-
+        $project = Project::where('slug', $slug)->firstOrFail();
         $project->update($validationData);
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }

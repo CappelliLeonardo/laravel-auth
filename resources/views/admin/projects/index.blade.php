@@ -39,6 +39,10 @@
                                             <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}" class="btn btn-xs btn-primary">
                                                 Show
                                             </a>
+                                            <a href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}"
+                                                class="btn btn-warning my-2">
+                                                Modifica
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
