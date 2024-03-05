@@ -11,6 +11,12 @@
                         Tutti i Project
                     </h1>
 
+                    <div class="mb-4">
+                        <a href="{{ route('admin.projects.create') }}" class="btn btn-success w-100 fs-5">
+                            + Aggiungi
+                        </a>
+                    </div>
+
                     <div>
                         <table class="table">
                             <thead>
