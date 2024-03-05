@@ -23,16 +23,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($projects as $projet)
+                                @foreach ($projects as $project)
                                     <tr>
-                                        <th scope="row">{{ $projet->id }}</th>
-                                        <td>{{ $projet->title }}</td>
-                                        <td>{{ $projet->slug }}</td>
-                                        <td>{{ $projet->created_at }}</td>
+                                        <th scope="row">{{ $project->id }}</th>
+                                        <td>{{ $project->title }}</td>
+                                        <td>{{ $project->slug }}</td>
+                                        <td>{{ $project->created_at }}</td>
                                         <td>
-                                            {{-- <a href="{{ route('admin.projects.show', ['projet' => $projet->slug]) }}" class="btn btn-xs btn-primary">
+                                            <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}" class="btn btn-xs btn-primary">
                                                 Show
-                                            </a> --}}
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
