@@ -12,7 +12,7 @@
                 </h1>
 
                 <h2>
-                    Slug: {{ $project->title }}
+                    Slug: {{ $project->slug }}
                 </h2>
 
                 <p>

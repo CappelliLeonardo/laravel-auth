@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 //Models
 use App\Models\Project;
 
+// Helpers
+use Illuminate\Support\Str;
+
 //Form Request
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -39,7 +42,17 @@ class ProjectController extends Controller
         
         $validationData=$request->validated();
 
-        $project = Project::create($validationData);
+        $slug = Str::slug($validationData['title']);
+      
+
+        // $project = Project::create($validationData);
+
+        $project = Project::create([
+            'title' => $validationData['title'],
+            'slug' => $slug,
+            'content'=> $validationData['content'],
+        ]);
+
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }
 
