@@ -80,8 +80,16 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, string $slug)
     {
         $validationData=$request->validated();
+
         $project = Project::where('slug', $slug)->firstOrFail();
-        $project->update($validationData);
+        $slug = Str::slug($validationData['title']);
+        $validationData['slug'] = $slug;
+        
+        $project->updateOrFail($validationData);
+        
+
+        
+        // $project->update($validationData);
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }
 
